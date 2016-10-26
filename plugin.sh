@@ -33,5 +33,5 @@ sed \
     -e "s/{LNAME}/$LNAME/" \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
-    -i setup.php hook.php tools/extract_template.sh
+    -i setup.php hook.php tools/extract_template.sh tools/HEADER
 popd > /dev/null
