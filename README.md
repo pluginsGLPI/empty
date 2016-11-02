@@ -6,7 +6,7 @@ This is basically a plugin skeleton with last minimal good practice to help you 
 
 ## Getting started
 
-FOr convenience, you can place the `empty` directory in you GLPi plugins directory.
+For convenience, you can place the `empty` directory in you GLPi plugins directory.
 
 You can use provided `plugin.sh` script in the main directory to get started. You'll have to pass name and version of your plugin in the call:
 ```
