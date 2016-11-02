@@ -1,17 +1,26 @@
 #!/bin/bash
 
-if [[ $# -ne 2 ]]; then
-    echo $0: usage: plugin.sh name version
+if [[ $# -ne 2 && $# -ne 3 ]]; then
+    echo $0: usage: plugin.sh name version [destination/path]
     exit 1
 fi
 
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+if [[ $# -eq 3 ]]; then
+    DIR=$3
+    if [ ! -d "$DIR" ]; then
+        echo "Destination directory $DIR does not exists!"
+        exit
+    fi
+else
+    DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )/.."
+fi
+
 NAME=$(echo $1|tr -dc '[[:alpha:]]')
 LNAME=${NAME,,}
 UNAME=${NAME^^}
 VERSION=$2
 
-DEST=$DIR/../$LNAME
+DEST=$DIR/$LNAME
 echo $NAME
 
 if [ -d "$DEST" ]; then
