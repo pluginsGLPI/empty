@@ -29,6 +29,12 @@ rsync \
 
 pushd $DEST > /dev/null
 
+#rename .tpl...
+for f in `ls *.tpl`
+do
+    mv $f ${f%.*}
+done
+
 #do replacements
 sed \
     -e "s/{NAME}/$NAME/" \
