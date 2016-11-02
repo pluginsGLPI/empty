@@ -456,10 +456,10 @@ def check_version(buildver):
     if os.path.exists(filename):
         with file(filename) as input:
             for count, line in enumerate(input):
-                regexp = ".*'PLUGIN_%s_VERSION', '(.+)'" % plugin_name.upper()
+                regexp = ".*('|\")PLUGIN_%s_VERSION('|\"), ('|\")(.+)('|\")" % plugin_name.upper()
                 results = re.match(regexp, line)
                 if results:
-                    found = results.group(1)
+                    found = results.group(4)
                     break
 
     if not found == buildver:
