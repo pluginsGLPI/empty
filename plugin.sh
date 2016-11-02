@@ -20,12 +20,14 @@ if [ -d "$DEST" ]; then
 fi
 
 mkdir $DEST
-#copy all files
-cp -a . $DEST
+
+rsync \
+    --exclude '.git*' \
+    --exclude 'plugin.sh' \
+    --exclude 'dist' \
+    -a . $DEST
 
 pushd $DEST > /dev/null
-#remove initialization script
-rm plugin.sh
 
 #do replacements
 sed \
