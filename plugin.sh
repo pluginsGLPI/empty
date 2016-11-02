@@ -6,7 +6,7 @@ if [[ $# -ne 2 ]]; then
 fi
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-NAME=$1
+NAME=$(echo $1|tr -dc '[[:alpha:]]')
 LNAME=${NAME,,}
 UNAME=${NAME^^}
 VERSION=$2
