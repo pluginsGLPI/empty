@@ -7,7 +7,6 @@ NAME='{NAME}'
 POTFILE=${NAME,,}.pot
 
 PHP_SOURCES=`find ./ -name \*.php ! -path ./vendor ! -path ./lib`
-echo $PHP_SOURCES
 
 if [ ! -d "locales" ]; then
     mkdir locales
