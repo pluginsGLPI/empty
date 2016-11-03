@@ -364,17 +364,7 @@ def prepare(rel_name, archive):
         )
         p1.communicate()
 
-    locales_dir = os.path.join(build_dir, 'locales')
-    if os.path.exists(locales_dir):
-        for file in os.listdir(locales_dir):
-            if file.endswith('.po'):
-                if verbose:
-                    print 'Compiling %s...' % file
-                p1 = subprocess.Popen(
-                    ['msgfmt', file, '-o', file.replace('.po', '.mo')],
-                    cwd=locales_dir
-                )
-                p1.communicate()
+    compile_mo(build_dir)
 
     plugin = tarfile.open(archive, 'w|bz2')
 
@@ -386,6 +376,21 @@ def prepare(rel_name, archive):
 
     plugin.close()
     shutil.rmtree(src_dir)
+
+def compile_mo(build_dir):
+    locales_dir = os.path.join(build_dir, 'locales')
+    if verbose:
+        print 'Locales dir: %s' % locales_dir
+    if os.path.exists(locales_dir):
+        for file in os.listdir(locales_dir):
+            if file.endswith('.po'):
+                if verbose:
+                    print 'Compiling %s...' % file
+                p1 = subprocess.Popen(
+                    ['msgfmt', file, '-o', file.replace('.po', '.mo')],
+                    cwd=locales_dir
+                )
+                p1.communicate()
 
 def valid_commit(repo, c):
     """
@@ -498,6 +503,12 @@ def main():
         help='Extra version informations (-c required)'
     )
     parser.add_argument(
+        '-m',
+        '--compile-mo',
+        help="Compile MO files from PO files (exclusive)",
+        action='store_true'
+    )
+    parser.add_argument(
         '-S',
         '--nosign',
         help="Do not sign release tarball",
@@ -542,7 +553,11 @@ def main():
 
     build = False
     buildver = None
-    if (args.extra or args.commit) and (not args.extra or not args.commit or not args.version):
+    if args.compile_mo:
+        src_dir = os.path.join(dist_dir, '..' , '..')
+        build_dir = os.path.join(src_dir, plugin_name)
+        compile_mo(build_dir)
+    elif (args.extra or args.commit) and (not args.extra or not args.commit or not args.version):
         print_err('You have to specify --version --commit and --extra all together')
         sys.exit(1)
     elif args.commit and args.version and args.extra:
