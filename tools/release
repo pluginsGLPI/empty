@@ -366,6 +366,8 @@ def prepare(rel_name, archive):
 
     compile_mo(build_dir)
 
+    minify(build_dir)
+
     plugin = tarfile.open(archive, 'w|bz2')
 
     for i in os.listdir(src_dir):
@@ -391,6 +393,24 @@ def compile_mo(build_dir):
                     cwd=locales_dir
                 )
                 p1.communicate()
+
+def minify(build_dir):
+    print os.path.join(build_dir, 'vendor')
+    if os.path.exists(os.path.join(build_dir, 'vendor')):
+        robo = ['./vendor/bin/robo', 'minify']
+        if not verbose:
+            robo.insert(-1, '-q')
+
+        if verbose:
+            print robo
+
+        p1 = subprocess.Popen(
+            robo,
+            cwd=build_dir
+        )
+        p1.communicate()
+    elif verbose:
+        print "Robo.li is not installed; cannot minify!"
 
 def valid_commit(repo, c):
     """
@@ -509,6 +529,12 @@ def main():
         action='store_true'
     )
     parser.add_argument(
+        '-M',
+        '--minify',
+        help="Minify CSS ans JS files",
+        action='store_true'
+    )
+    parser.add_argument(
         '-S',
         '--nosign',
         help="Do not sign release tarball",
@@ -553,10 +579,11 @@ def main():
 
     build = False
     buildver = None
-    if args.compile_mo:
-        src_dir = os.path.join(dist_dir, '..' , '..')
-        build_dir = os.path.join(src_dir, plugin_name)
-        compile_mo(build_dir)
+    if args.compile_mo or args.minify:
+        if args.compile_mo:
+            compile_mo(plugin_repo)
+        if args.minify:
+            minify(plugin_repo)
     elif (args.extra or args.commit) and (not args.extra or not args.commit or not args.version):
         print_err('You have to specify --version --commit and --extra all together')
         sys.exit(1)
