@@ -54,4 +54,71 @@ class RoboFilePlugin extends \Robo\Tasks
       }
       return $this;
    }
+
+   /**
+    * Extract translatable strings
+    *
+    * @return void
+    */
+   public function localesExtract()
+   {
+      $this->_exec('tools/extract_template.sh');
+      return $this;
+   }
+
+   /**
+    * Push locales to transifex
+    *
+    * @return void
+    */
+   public function localesPush()
+   {
+      $this->_exec('tx push -s');
+      return $this;
+   }
+
+   /**
+    * Pull locales from transifex.
+    *
+    * @return void
+    */
+   public function localesPull($percent = 70)
+   {
+      $this->_exec('tx pull -s --minimum-perc=' .$percent);
+      return $this;
+   }
+
+   /**
+    * Build MO files
+    *
+    * @return void
+    */
+   public function localesMo()
+   {
+      $this->_exec('./tools/release --compile-mo');
+      return $this;
+   }
+
+   /**
+    * Extract and send locales
+    *
+    * @return void
+    */
+   public function localesSend()
+   {
+      $this->localesExtract()
+           ->localesPush();
+      return $this;
+   }
+
+   /**
+    * Retrieve locales and generate mo files
+    *
+    * @return void
+    */
+   public function localesGenerate($percent = 70) {
+      $this->localesPull($percent)
+           ->localesMo();
+      return $this;
+   }
 }
