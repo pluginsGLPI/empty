@@ -19,6 +19,7 @@ force = False
 commit = None
 extra = None
 sign = True
+github = False
 assume_yes = False
 banned = [
     'dist',
@@ -273,30 +274,22 @@ def _do_build(repo, ver):
         if sign:
             do_sign(archive)
 
-        #upload = ask_user_confirm(
-        #    'Do you want to upload archive %s? [yes/No] ' % archive
-        #)
-
-        #if upload:
-        #    do_upload(archive, gh_id, plugin_name, ver)
+        if github:
+            create_gh_release(archive, gh_id, plugin_name, ver)
 
 def do_sign(archive):
     sign_cmd = 'gpg --detach-sign --armor %s' % archive
     p1 = subprocess.Popen(sign_cmd, shell=True)
     p1.communicate()
 
-def do_upload(archive, gh_id, plugin_name, ver):
+def create_gh_release(archive, gh_id, plugin_name, ver):
     cred_file = os.path.join(plugin_dir, '.gh_token')
 
     if not os.path.exists(cred_file):
-        print_err('Credential file does not exists; release will not be created')
+        print_err('Credential file does not exists; GitHub release will not be created')
         return
 
     import github
-    #from uritemplate import URITemplate
-    #import requests
-    #import mimetypes
-
 
     with open(cred_file, 'r') as fd:
         token = fd.readline().strip()
@@ -304,13 +297,21 @@ def do_upload(archive, gh_id, plugin_name, ver):
     gh = github.Github(token)
     gh_user = gh.get_user()
 
-
     for gh_repo in gh_user.get_repos():
         if gh_repo.full_name == '%s/%s' % (gh_orga, plugin_name):
             break
 
     gh_release = None
+
+    #check in all releases (including drafts) if nothing has been found yet
     if gh_id is None:
+        for gh_rel in gh_repo.get_releases():
+            if gh_rel.tag_name == ver:
+              gh_release = gh_rel
+              break
+
+    #create release if it does not exists
+    if gh_id is None and gh_release is None:
         is_prerelease = False if commit else True
         gh_release = gh_repo.create_git_release(
             ver,
@@ -319,8 +320,20 @@ def do_upload(archive, gh_id, plugin_name, ver):
             True,
             is_prerelease
         )
-    else :
+    elif gh_id is not None:
         gh_release = gh_repo.get_release(gh_id)
+
+    #upload = ask_user_confirm(
+    #    'Do you want to upload archive %s? [yes/No] ' % archive
+    #)
+
+    #if upload:
+    #    do_upload(archive, gh_id, plugin_name, ver)
+
+#def do_upload(archive, gh_id, plugin_name, ver):
+    #from uritemplate import URITemplate
+    #import requests
+    #import mimetypes
 
     #Upload asset
     #template = URITemplate(gh_release.upload_url)
@@ -496,7 +509,7 @@ def main():
     """
     Main method
     """
-    global verbose, tagrefs, force, extra, assume_yes, sign, plugin_name
+    global verbose, tagrefs, force, extra, assume_yes, sign, plugin_name, github
 
     parser = argparse.ArgumentParser(description='Release plugin')
     group = parser.add_mutually_exclusive_group()
@@ -504,6 +517,12 @@ def main():
         '-v',
         '--version',
         help='Version to release'
+    )
+    paser.add_argument(
+        '-g',
+        '--github',
+        help="Create github release (as a draft)",
+        action='store_true'
     )
     group.add_argument(
         '-p',
@@ -556,6 +575,7 @@ def main():
 
     verbose=args.verbose
     sign=args.nosign
+    github=args.github
 
     if verbose:
         print args
