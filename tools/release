@@ -395,7 +395,6 @@ def compile_mo(build_dir):
                 p1.communicate()
 
 def minify(build_dir):
-    print os.path.join(build_dir, 'vendor')
     if os.path.exists(os.path.join(build_dir, 'vendor')):
         robo = ['./vendor/bin/robo', 'minify']
         if not verbose:
