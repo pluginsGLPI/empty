@@ -518,7 +518,7 @@ def main():
         '--version',
         help='Version to release'
     )
-    paser.add_argument(
+    parser.add_argument(
         '-g',
         '--github',
         help="Create github release (as a draft)",
