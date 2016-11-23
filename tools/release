@@ -278,7 +278,7 @@ def _do_build(repo, ver):
             create_gh_release(archive, gh_id, plugin_name, ver)
 
 def do_sign(archive):
-    sign_cmd = 'gpg --detach-sign --armor %s' % archive
+    sign_cmd = 'gpg --no-use-agent --detach-sign --armor %s' % archive
     p1 = subprocess.Popen(sign_cmd, shell=True)
     p1.communicate()
 
