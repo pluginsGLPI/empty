@@ -19,7 +19,7 @@ force = False
 commit = None
 extra = None
 sign = True
-github = False
+github = True
 assume_yes = False
 banned = [
     'dist',
@@ -283,15 +283,7 @@ def do_sign(archive):
     p1.communicate()
 
 def create_gh_release(archive, gh_id, plugin_name, ver):
-    cred_file = os.path.join(plugin_dir, '.gh_token')
-
-    if not os.path.exists(cred_file):
-        print_err('Credential file does not exists; GitHub release will not be created')
-        return
-
-    import github
-
-    with open(cred_file, 'r') as fd:
+    with open(gh_cred_file, 'r') as fd:
         token = fd.readline().strip()
 
     gh = github.Github(token)
@@ -422,7 +414,7 @@ def minify(build_dir):
         )
         p1.communicate()
     elif verbose:
-        print "Robo.li is not installed; cannot minify!"
+        print_err("Robo.li is not installed; cannot minify!")
 
 def valid_commit(repo, c):
     """
@@ -509,7 +501,7 @@ def main():
     """
     Main method
     """
-    global verbose, tagrefs, force, extra, assume_yes, sign, plugin_name, github
+    global verbose, tagrefs, force, extra, assume_yes, sign, plugin_name, github, gh_cred_file
 
     parser = argparse.ArgumentParser(description='Release plugin')
     group = parser.add_mutually_exclusive_group()
@@ -520,9 +512,9 @@ def main():
     )
     parser.add_argument(
         '-g',
-        '--github',
-        help="Create github release (as a draft)",
-        action='store_true'
+        '--nogithub',
+        help="DO NOT Create github draft release",
+        action='store_false'
     )
     group.add_argument(
         '-p',
@@ -575,10 +567,17 @@ def main():
 
     verbose=args.verbose
     sign=args.nosign
-    github=args.github
+    github=args.nogithub
 
     if verbose:
         print args
+
+    if github:
+        import github
+        gh_cred_file = os.path.join(plugin_dir, '.gh_token')
+        if not os.path.exists(gh_cred_file):
+            print_err('GitHub credential file does not exists! Either create it or use the --nogithub option.')
+            sys.exit(1)
 
     plugin_name = guess_plugin_name()
 
