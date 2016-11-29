@@ -27,10 +27,12 @@ class RoboFilePlugin extends \Robo\Tasks
       $css_dir = __DIR__ . '/css';
       if (is_dir($css_dir)) {
          foreach(glob("$css_dir/*.css") as $css_file) {
-            $this->taskMinify($css_file)
-               ->to(str_replace('.css', '.min.css', $css_file))
-               ->type('css')
-               ->run();
+            if (!$this->endsWith($css_file, 'min.css')) {
+               $this->taskMinify($css_file)
+                  ->to(str_replace('.css', '.min.css', $css_file))
+                  ->type('css')
+                  ->run();
+            }
          }
       }
       return $this;
@@ -46,10 +48,12 @@ class RoboFilePlugin extends \Robo\Tasks
       $js_dir = __DIR__ . '/js';
       if (is_dir($js_dir)) {
          foreach(glob("$js_dir/*.js") as $js_file) {
-            $this->taskMinify($js_file)
-               ->to(str_replace('.js', '.min.js', $js_file))
-               ->type('js')
-               ->run();
+            if (!$this->endsWith($js_file, 'min.js')) {
+               $this->taskMinify($js_file)
+                  ->to(str_replace('.js', '.min.js', $js_file))
+                  ->type('js')
+                  ->run();
+            }
          }
       }
       return $this;
@@ -120,5 +124,23 @@ class RoboFilePlugin extends \Robo\Tasks
       $this->localesPull($percent)
            ->localesMo();
       return $this;
+   }
+
+   /**
+    * Checks if a string ends with another string
+    *
+    * @param string $haystack Full string
+    * @param string $needle   Ends string
+    *
+    * @return boolean
+    * @see http://stackoverflow.com/a/834355
+    */
+   private function endsWith($haystack, $needle) {
+      $length = strlen($needle);
+      if ($length == 0) {
+         return true;
+      }
+
+      return (substr($haystack, -$length) === $needle);
    }
 }
