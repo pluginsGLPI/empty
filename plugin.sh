@@ -32,7 +32,7 @@ fi
 mkdir $DEST
 
 rsync \
-    --exclude '.git*' \
+    --exclude '.git' \
     --exclude 'plugin.sh' \
     --exclude 'dist' \
     --exclude 'README.md' \
