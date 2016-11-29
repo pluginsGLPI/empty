@@ -15,7 +15,7 @@ before_script:
 script:
 #  - mysql -u root -e 'select version();'
 #  - phpunit --verbose
-  - phpcs -p --ignore=vendor --standard=tools/phpcs-rules.xml  .
+  - phpcs -p --ignore=vendor --ignore=js --standard=tools/phpcs-rules.xml  .
 
 matrix:
   include:
