@@ -25,24 +25,24 @@ matrix:
     - php: 5.5
       addons:
         mariadb: 5.5
-    - php: 5.6
-      addons:
-        mariadb: 5.5
-    - php: 5.6
-      addons:
-        mariadb: 10.0
+#    - php: 5.6
+#      addons:
+#        mariadb: 5.5
+#    - php: 5.6
+#      addons:
+#        mariadb: 10.0
     - php: 5.6
       addons:
         mariadb: 10.1
-    - php: 7.0
-      addons:
-        mariadb: 10.0
+#    - php: 7.0
+#      addons:
+#        mariadb: 10.0
     - php: 7.0
       addons:
         mariadb: 10.1
-    - php: 7.1
-      addons:
-        mariadb: 10.0
+#    - php: 7.1
+#      addons:
+#        mariadb: 10.0
     - php: 7.1
       addons:
         mariadb: 10.1
