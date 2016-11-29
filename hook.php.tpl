@@ -1,10 +1,10 @@
 <?php
 /*
  -------------------------------------------------------------------------
- GLPI - Gestionnaire Libre de Parc Informatique
- Copyright (C) 2016 Teclib
+ {NAME} plugin for GLPI
+ Copyright (C) {YEAR} by the {NAME} Development Team.
 
- http://teclib.com/   http://glpi-project.org
+ https://github.com/pluginsGLPI/{LNAME}
  -------------------------------------------------------------------------
 
  LICENSE

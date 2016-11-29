@@ -28,4 +28,5 @@ You can also provide a destination path (ie. if your `empty` directory is not in
 * `{NAME}` will be replaced by the name you've provide, verbatim,
 * `{VERSION}` will be replaced byt the version you've provided,
 * `{LNAME}` will be replaced byt the lowercased name,
-* `{RNAME}` will be replaced by the uppercased name.
+* `{UNAME}` will be replaced by the uppercased name,
+* `{YEAR}` will be replaced by the current year.

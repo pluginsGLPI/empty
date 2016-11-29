@@ -19,9 +19,10 @@ NAME=$(echo $1|tr -dc '[[:alpha:]]')
 LNAME=${NAME,,}
 UNAME=${NAME^^}
 VERSION=$2
+YEAR=$(date +%Y)
 
 DEST=$DIR/$LNAME
-echo $NAME
+echo "Creating new $NAME plugin..."
 
 if [ -d "$DEST" ]; then
     echo "A directory named $LNAME already exists!"
@@ -34,6 +35,7 @@ rsync \
     --exclude '.git*' \
     --exclude 'plugin.sh' \
     --exclude 'dist' \
+    --exclude 'README.md' \
     -a . $DEST
 
 pushd $DEST > /dev/null
@@ -50,5 +52,7 @@ sed \
     -e "s/{LNAME}/$LNAME/" \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
-    -i setup.php hook.php tools/extract_template.sh tools/HEADER
+    -e "s/{YEAR}/$YEAR/" \
+    -i setup.php hook.php tools/extract_template.sh tools/HEADER README.md
+
 popd > /dev/null
