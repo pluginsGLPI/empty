@@ -516,6 +516,12 @@ def main():
         help="DO NOT Create github draft release",
         action='store_false'
     )
+    parser.add_argument(
+        '-C',
+        '--check-only',
+        help="Only do chec, does not release anything",
+        action='store_true'
+    )
     group.add_argument(
         '-p',
         '--propose',
@@ -591,6 +597,9 @@ def main():
         )
     assume_yes=args.assume_yes
 
+    if args.check_only:
+        print '*** Entering *check-only* mode ***'
+
     #check if dist_dir exists
     if not os.path.exists(dist_dir):
         os.makedirs(dist_dir)
@@ -637,7 +646,7 @@ def main():
             )
 
     if build:
-        if check_version(buildver):
+        if check_version(buildver) and args.check_only == False:
             _do_build(repo, buildver)
 
 if __name__ == "__main__":
