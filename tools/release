@@ -5,6 +5,7 @@ import os, sys, argparse, re, git, subprocess
 import tarfile, shutil, gitdb, time, urllib2, json
 from datetime import datetime
 from termcolor import colored
+from lxml import etree
 
 plugin_dir = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))
@@ -494,8 +495,33 @@ def check_version(buildver):
     if not found == buildver:
         print_err('Plugin version check has failed (%s but %s found)!' % (buildver, found))
         return False
+
+    #check plugins website XML file
+    xmlfile = os.path.join(plugin_dir, '%s.xml' % plugin_name)
+    if not os.path.exists(xmlfile):
+        xmlfile = os.path.join(plugin_dir, 'plugin.xml')
+        if not os.path.exists(xmlfile):
+            xmlfile = None
+
+    if xmlfile != None:
+        if verbose:
+            print 'XML file found in %s' % xmlfile
+        try:
+            xmldoc = etree.parse(xmlfile)
+            for version in xmldoc.getiterator('num'):
+                if version.text == buildver:
+                    if verbose:
+                        print '%s found in the XML file!' % buildver
+                    return True
+            print_err('%s *NOT* found in the XML file %s' % (buildver, xmlfile))
+        except etree.XMLSyntaxError as err:
+            print_err('%s is *NOT* XML valid!' % (xmlfile))
+            if verbose:
+                print format(err)
+            return False
     else:
-        return True
+        print_err('Plugins website configuration file has not been found!')
+        return False
 
 def main():
     """
