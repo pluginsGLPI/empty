@@ -33,6 +33,7 @@ banned = [
     'tests'
 ]
 gh_orga = 'pluginsGLPI'
+script_version = '1.0.0'
 
 def print_err(msg):
     """
@@ -529,11 +530,11 @@ def main():
     """
     global verbose, tagrefs, force, extra, assume_yes, sign, plugin_name, github, gh_cred_file
 
-    parser = argparse.ArgumentParser(description='Release plugin')
+    parser = argparse.ArgumentParser(description='GLPi plugins release script', version=script_version)
     group = parser.add_mutually_exclusive_group()
     group.add_argument(
-        '-v',
-        '--version',
+        '-r',
+        '--release',
         help='Version to release'
     )
     parser.add_argument(
