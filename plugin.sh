@@ -46,6 +46,9 @@ do
     mv $f ${f%.*}
 done
 
+#drop tpl from .travis.yml
+sed -e "s/ hook.php.tpl setup.php.tpl//" -i .travis.yml
+
 #do replacements
 sed \
     -e "s/{NAME}/$NAME/" \

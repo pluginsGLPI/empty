@@ -66,7 +66,7 @@ function plugin_version_{LNAME}() {
  */
 function plugin_{LNAME}_check_prerequisites() {
    // Strict version check (could be less strict, or could allow various version)
-   if (version_compare(GLPI_VERSION,'9.1','lt')) {
+   if (version_compare(GLPI_VERSION, '9.1', 'lt')) {
       echo "This plugin requires GLPI >= 9.1";
       return false;
    }
@@ -80,7 +80,7 @@ function plugin_{LNAME}_check_prerequisites() {
  *
  * @return boolean
  */
-function plugin_{LNAME}_check_config($verbose=false) {
+function plugin_{LNAME}_check_config($verbose = false) {
    if (true) { // Your configuration check
       return true;
    }
