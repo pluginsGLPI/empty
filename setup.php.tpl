@@ -67,7 +67,11 @@ function plugin_version_{LNAME}() {
 function plugin_{LNAME}_check_prerequisites() {
    // Strict version check (could be less strict, or could allow various version)
    if (version_compare(GLPI_VERSION, '9.1', 'lt')) {
-      echo "This plugin requires GLPI >= 9.1";
+      if (method_exists('Plugin', 'messageIncompatible')) {
+         echo Plugin::messageIncompatible('core', '9.1');
+      } else {
+         echo "This plugin requires GLPI >= 9.1";
+      }
       return false;
    }
    return true;
