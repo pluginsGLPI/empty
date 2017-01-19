@@ -1,4 +1,4 @@
-# {NAME} GLPi plugin
+# {NAME} GLPI plugin
 
 Add your plugin description here.
 
