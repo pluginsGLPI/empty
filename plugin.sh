@@ -49,6 +49,9 @@ done
 #drop tpl from .travis.yml
 sed -e "s/ hook.php.tpl setup.php.tpl//" -i .travis.yml
 
+# move xml file
+mv plugin.xml $LNAME.xml
+
 #do replacements
 sed \
     -e "s/{NAME}/$NAME/" \
@@ -56,6 +59,6 @@ sed \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php tools/extract_template.sh tools/HEADER README.md
+    -i setup.php hook.php $LNAME.xml tools/extract_template.sh tools/HEADER README.md
 
 popd > /dev/null
