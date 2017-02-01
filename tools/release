@@ -6,6 +6,7 @@ import tarfile, shutil, gitdb, time, urllib2, json
 from datetime import datetime
 from termcolor import colored
 from lxml import etree
+from fnmatch import fnmatch
 
 plugin_dir = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__))
@@ -23,18 +24,16 @@ sign = True
 github = True
 assume_yes = False
 banned = [
-    'dist',
-    'vendor',
-    '.git',
-    '.gitignore',
+    '.git*',
     '.gh_token',
-    '.tx',
-    'tools',
-    'tests',
-    '.atoum.php'
+    '.tx/',
+    'tools/',
+    'tests/',
+    '.atoum.php',
+    '.travis.yml'
 ]
 gh_orga = 'pluginsGLPI'
-script_version = '1.0.1'
+script_version = '1.0.2'
 
 def print_err(msg):
     """
@@ -259,26 +258,50 @@ def _do_build(repo, ver):
                 archive
             )
 
-        paths = os.listdir(plugin_dir)
-        paths = list(set(paths) - set(banned))
+        ls_files_cmd = 'git ls-tree -r %s --name-only' % ver
+        ls_files = subprocess.check_output(['git', 'ls-tree', '-r', ver, '--name-only'])
 
+        paths = []
+
+        for ls_file in ls_files.split('\n'):
+            if ls_file != '':
+                append = True
+                for ban in banned:
+                    if re.match(ban, ls_file):
+                        append = False
+                        break
+                if append:
+                    paths.append(ls_file)
+
+        archive_cmd_pattern = 'git archive --prefix=%s/ %s %s | bzip2 > %s'
         if commit and extra:
             print 'Archiving GIT commit %s' % commit
-            with open(archive, 'wb') as stream:
-                repo.archive(stream, commit, prefix=plugin_name+'/', path=paths)
+            archive_cmd = archive_cmd_pattern % (
+                plugin_name+'/',
+                commit,
+                ' '.join(paths),
+                archive
+            )
         else:
             print 'Archiving GIT tag %s' % ver
-            with open(archive, 'wb') as stream:
-                repo.archive(stream, ver, prefix=plugin_name+'/', path=paths)
+            archive_cmd = archive_cmd_pattern % (
+                plugin_name+'/',
+                ver,
+                ' '.join(paths),
+                archive
+            )
 
-        print 'Adding vendor libraries'
-        prepare(plugin_name, archive)
+        res = subprocess.check_call(archive_cmd, shell=True)
+        if res > 0:
+            print_err('Archiving has failed!')
+        else:
+            prepare(plugin_name, archive)
 
-        if sign:
-            do_sign(archive)
+            if sign:
+                do_sign(archive)
 
-        if github:
-            create_gh_release(archive, gh_id, plugin_name, ver)
+            if github:
+                create_gh_release(archive, gh_id, plugin_name, ver)
 
 def do_sign(archive):
     sign_cmd = 'gpg --no-use-agent --detach-sign --armor %s' % archive
@@ -360,6 +383,8 @@ def prepare(rel_name, archive):
     plugin.close()
 
     build_dir = os.path.join(src_dir, plugin_name)
+
+    print 'Adding vendor libraries'
     if os.path.exists(os.path.join(build_dir, 'composer.lock')):
         composer = ['composer', 'install', '-o', '--no-dev']
 
@@ -371,6 +396,7 @@ def prepare(rel_name, archive):
             cwd=build_dir
         )
         p1.communicate()
+        os.remove(os.path.join(build_dir, 'composer.lock'))
 
     compile_mo(build_dir)
 
@@ -419,6 +445,11 @@ def minify(build_dir):
         p1.communicate()
     else:
         print_err("Robo.li is not installed; cannot minify!")
+
+    if os.path.exists(os.path.join(build_dir, 'RoboFile.php')):
+        os.remove(os.path.join(build_dir, 'RoboFile.php'))
+    if os.path.exists(os.path.join(build_dir, 'RoboFilePlugin.php')):
+        os.remove(os.path.join(build_dir, 'RoboFilePlugin.php'))
 
 def valid_commit(repo, c):
     """
