@@ -46,8 +46,8 @@ do
     mv $f ${f%.*}
 done
 
-#drop tpl from .travis.yml
-sed -e "s/ hook.php.tpl setup.php.tpl//" -i .travis.yml
+#drop specific file config from RoboFile
+sed -e "/^.*protected \$csfiles.*$/d" -i RoboFile.php
 
 # move xml file
 mv plugin.xml $LNAME.xml
