@@ -9,5 +9,6 @@ require_once 'RoboFilePlugin.php';
 
 class RoboFile extends RoboFilePlugin
 {
-    //Own plugin's robo stuff
+   protected $csfiles = ['./', 'setup.php.tpl', 'hook.php.tpl'];
+   //Own plugin's robo stuff
 }

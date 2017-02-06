@@ -13,7 +13,7 @@ before_script:
 script:
 #  - mysql -u root -e 'select version();'
 #  - phpunit --verbose
-  - vendor/bin/phpcs -p --ignore=vendor --ignore=js --standard=vendor/glpi-project/coding-standard/GlpiStandard/ . hook.php.tpl setup.php.tpl
+  - if [[ ${TRAVIS_PHP_VERSION:0:3} != "5.4" ]]; then vendor/bin/robo --no-interaction code:cs; else echo "CS checking with robo diabled with PHP 5.4"; fi
 
 matrix:
   include:
