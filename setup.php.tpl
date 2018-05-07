@@ -54,7 +54,12 @@ function plugin_version_{LNAME}() {
       'author'         => '<a href="http://www.teclib.com">Teclib\'</a>',
       'license'        => '',
       'homepage'       => '',
-      'minGlpiVersion' => '9.1'
+      'requirements'   => [
+         'glpi' => [
+            'min' => '9.2',
+            'dev' => true
+         ]
+      ]
    ];
 }
 
@@ -66,11 +71,11 @@ function plugin_version_{LNAME}() {
  */
 function plugin_{LNAME}_check_prerequisites() {
    // Strict version check (could be less strict, or could allow various version)
-   if (version_compare(GLPI_VERSION, '9.1', 'lt')) {
+   if (version_compare(GLPI_VERSION, '9.2', 'lt')) {
       if (method_exists('Plugin', 'messageIncompatible')) {
-         echo Plugin::messageIncompatible('core', '9.1');
+         echo Plugin::messageIncompatible('core', '9.2');
       } else {
-         echo "This plugin requires GLPI >= 9.1";
+         echo "This plugin requires GLPI >= 9.2";
       }
       return false;
    }
