@@ -90,7 +90,7 @@ function plugin_{LNAME}_check_config($verbose = false) {
    }
 
    if ($verbose) {
-      _e('Installed / not configured', '{LNAME}');
+      echo __('Installed / not configured', '{LNAME}');
    }
    return false;
 }
