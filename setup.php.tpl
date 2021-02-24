@@ -56,7 +56,7 @@ function plugin_version_{LNAME}() {
       'homepage'       => '',
       'requirements'   => [
          'glpi' => [
-            'min' => '9.2',
+            'min' => '9.5',
          ]
       ]
    ];
@@ -70,12 +70,6 @@ function plugin_version_{LNAME}() {
  */
 function plugin_{LNAME}_check_prerequisites() {
 
-   //Version check is not done by core in GLPI < 9.2 but has to be delegated to core in GLPI >= 9.2.
-   $version = preg_replace('/^((\d+\.?)+).*$/', '$1', GLPI_VERSION);
-   if (version_compare($version, '9.2', '<')) {
-      echo "This plugin requires GLPI >= 9.2";
-      return false;
-   }
    return true;
 }
 
