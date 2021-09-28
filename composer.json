@@ -3,7 +3,7 @@
         "php": ">=4.2"
     },
     "require-dev": {
-        "glpi-project/tools": "^0.1"
+        "glpi-project/tools": "^0.2"
     },
     "config": {
         "optimize-autoloader": true,

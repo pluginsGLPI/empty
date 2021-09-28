@@ -8,7 +8,7 @@ before_script:
   - composer install --optimize-autoloader --prefer-dist --no-interaction --no-progress --no-suggest
 
 script:
-  - vendor/bin/robo --no-interaction code:cs --strict
+  - vendor/bin/phpcs --ignore=/.git/,/vendor/ --standard=vendor/glpi-project/coding-standard/GlpiStandard/ -n ./
 
 cache:
   directories:
