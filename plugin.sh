@@ -74,9 +74,6 @@ do
     mv $f ${f%.*}
 done
 
-#drop specific file config from RoboFile
-sed -e "/^.*protected \$csfiles.*$/d" -i RoboFile.php
-
 # move xml file
 mv plugin.xml $LNAME.xml
 
