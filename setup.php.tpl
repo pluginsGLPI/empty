@@ -30,6 +30,11 @@
 
 define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 
+// Minimal GLPI version, inclusive
+define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "10.0.0");
+// Maximum GLPI version, exclusive
+define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "10.0.99");
+
 /**
  * Init hooks of the plugin.
  * REQUIRED
@@ -58,7 +63,8 @@ function plugin_version_{LNAME}() {
       'homepage'       => '',
       'requirements'   => [
          'glpi' => [
-            'min' => '9.5',
+            'min' => PLUGIN_{UNAME}_MIN_GLPI_VERSION,
+            'min' => PLUGIN_{UNAME}_MAX_GLPI_VERSION,
          ]
       ]
    ];
