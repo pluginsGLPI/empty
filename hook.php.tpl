@@ -1,4 +1,5 @@
 <?php
+
 /**
  * -------------------------------------------------------------------------
  * {NAME} plugin for GLPI
@@ -33,8 +34,9 @@
  *
  * @return boolean
  */
-function plugin_{LNAME}_install() {
-   return true;
+function plugin_{LNAME}_install()
+{
+    return true;
 }
 
 /**
@@ -42,6 +44,7 @@ function plugin_{LNAME}_install() {
  *
  * @return boolean
  */
-function plugin_{LNAME}_uninstall() {
-   return true;
+function plugin_{LNAME}_uninstall()
+{
+    return true;
 }

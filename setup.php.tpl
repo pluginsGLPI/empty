@@ -1,4 +1,5 @@
 <?php
+
 /**
  * -------------------------------------------------------------------------
  * {NAME} plugin for GLPI
@@ -41,10 +42,11 @@ define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "10.0.99");
  *
  * @return void
  */
-function plugin_init_{LNAME}() {
-   global $PLUGIN_HOOKS;
+function plugin_init_{LNAME}()
+{
+    global $PLUGIN_HOOKS;
 
-   $PLUGIN_HOOKS['csrf_compliant']['{LNAME}'] = true;
+    $PLUGIN_HOOKS['csrf_compliant']['{LNAME}'] = true;
 }
 
 
@@ -54,20 +56,21 @@ function plugin_init_{LNAME}() {
  *
  * @return array
  */
-function plugin_version_{LNAME}() {
-   return [
-      'name'           => '{NAME}',
-      'version'        => PLUGIN_{UNAME}_VERSION,
-      'author'         => '<a href="http://www.teclib.com">Teclib\'</a>',
-      'license'        => '',
-      'homepage'       => '',
-      'requirements'   => [
-         'glpi' => [
-            'min' => PLUGIN_{UNAME}_MIN_GLPI_VERSION,
-            'max' => PLUGIN_{UNAME}_MAX_GLPI_VERSION,
-         ]
-      ]
-   ];
+function plugin_version_{LNAME}()
+{
+    return [
+        'name'           => '{NAME}',
+        'version'        => PLUGIN_{UNAME}_VERSION,
+        'author'         => '<a href="http://www.teclib.com">Teclib\'</a>',
+        'license'        => '',
+        'homepage'       => '',
+        'requirements'   => [
+            'glpi' => [
+                'min' => PLUGIN_{UNAME}_MIN_GLPI_VERSION,
+                'max' => PLUGIN_{UNAME}_MAX_GLPI_VERSION,
+            ]
+        ]
+    ];
 }
 
 /**
@@ -76,9 +79,9 @@ function plugin_version_{LNAME}() {
  *
  * @return boolean
  */
-function plugin_{LNAME}_check_prerequisites() {
-
-   return true;
+function plugin_{LNAME}_check_prerequisites()
+{
+    return true;
 }
 
 /**
@@ -88,13 +91,14 @@ function plugin_{LNAME}_check_prerequisites() {
  *
  * @return boolean
  */
-function plugin_{LNAME}_check_config($verbose = false) {
-   if (true) { // Your configuration check
-      return true;
-   }
+function plugin_{LNAME}_check_config($verbose = false)
+{
+    if (true) { // Your configuration check
+        return true;
+    }
 
-   if ($verbose) {
-      echo __('Installed / not configured', '{LNAME}');
-   }
-   return false;
+    if ($verbose) {
+        echo __('Installed / not configured', '{LNAME}');
+    }
+    return false;
 }
