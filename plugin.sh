@@ -84,6 +84,6 @@ sed \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md .travis.yml
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md
 
 popd > /dev/null
