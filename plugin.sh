@@ -44,8 +44,8 @@ else
 fi
 
 NAME=$(echo $1|tr -dc '[[:alpha:]]')
-LNAME=${NAME,,}
-UNAME=${NAME^^}
+LNAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
+UNAME=$(echo "$NAME" | tr '[:lower:]' '[:upper:]')
 VERSION=$2
 YEAR=$(date +%Y)
 
