@@ -49,7 +49,7 @@ UNAME=${NAME^^}
 VERSION=$2
 YEAR=$(date +%Y)
 
-DEST=$DIR/$LNAME
+DEST="$DIR/$LNAME"
 echo "Creating new $NAME plugin..."
 
 if [ -d "$DEST" ]; then
@@ -57,16 +57,16 @@ if [ -d "$DEST" ]; then
     exit 1
 fi
 
-mkdir $DEST
+mkdir "$DEST"
 
 rsync \
     --exclude '.git' \
     --exclude 'plugin.sh' \
     --exclude 'dist' \
     --exclude 'README.md' \
-    -a . $DEST
+    -a . "$DEST"
 
-pushd $DEST > /dev/null
+pushd "$DEST" > /dev/null
 
 #rename .tpl...
 for f in `ls *.tpl`
