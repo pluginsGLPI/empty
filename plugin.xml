@@ -3,23 +3,23 @@
    <key>{LNAME}</key>
    <!-- stable, beta, development, alpha, ... -->
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/pluginsGLPI/{LNAME}/master/{LNAME}.png</logo>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/{LNAME}/main/{LNAME}.png</logo>
    <description>
       <short>
          <!-- Add as many lang tag you want -->
-         <en>{NAME} GLPI plugin.</en>
+         <en>{NAME} GLPI plugin</en>
          <fr>Plugin GLPI {NAME}</fr>
       </short>
       <long>
          <!-- Add as many lang tag you want -->
          <en>A long description for {NAME} GLPI plugin.</en>
-         <fr>Un description longue pour le plugin GLPI {NAME}</fr>
+         <fr>Une description longue pour le plugin GLPI {NAME}.</fr>
       </long>
    </description>
    <homepage>https://github.com/pluginsGLPI/{LNAME}</homepage>
    <download>https://github.com/pluginsGLPI/{LNAME}/releases</download>
    <issues>https://github.com/pluginsGLPI/{LNAME}/issues</issues>
-   <readme>https://github.com/pluginsGLPI/{LNAME}/blob/master/README.md</readme>
+   <readme>https://github.com/pluginsGLPI/{LNAME}/blob/main/README.md</readme>
    <authors>
       <!-- Add as many author tag you want -->
       <author>Teclib'</author>
@@ -39,7 +39,7 @@
       <lang>en_GB</lang>
       <lang>fr_FR</lang>
    </langs>
-   <license>GPL V3+</license>
+   <license>MIT</license>
    <!--tags>
       <en>
          <tag>One tag</tag>
@@ -51,7 +51,7 @@
       </fr>
    </tags-->
    <!--screenshots>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot.png</screenshot>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot2.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/{LNAME}/raw/main/screenshot.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/{LNAME}/raw/main/screenshot2.png</screenshot>
    </screenshots-->
 </root>

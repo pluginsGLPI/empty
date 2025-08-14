@@ -3,7 +3,6 @@
 /**
  * -------------------------------------------------------------------------
  * {NAME} plugin for GLPI
- * Copyright (C) {YEAR} by the {NAME} Development Team.
  * -------------------------------------------------------------------------
  *
  * MIT License
@@ -25,38 +24,52 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- *
- * --------------------------------------------------------------------------
+ * -------------------------------------------------------------------------
+ * @copyright Copyright (C) {YEAR} by the {NAME} plugin team.
+ * @license   MIT https://opensource.org/licenses/mit-license.php
+ * @link      https://github.com/pluginsGLPI/{LNAME}
+ * -------------------------------------------------------------------------
  */
 
 define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 
 // Minimal GLPI version, inclusive
 define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "10.0.0");
+
 // Maximum GLPI version, exclusive
 define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "10.0.99");
 
 /**
  * Init hooks of the plugin.
  * REQUIRED
- *
- * @return void
  */
-function plugin_init_{LNAME}()
+function plugin_init_{LNAME}(): void
 {
+    /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
     global $PLUGIN_HOOKS;
 
     $PLUGIN_HOOKS['csrf_compliant']['{LNAME}'] = true;
 }
 
-
 /**
  * Get the name and the version of the plugin
  * REQUIRED
  *
- * @return array
+ * @return array{
+ *      name: string,
+ *      version: string,
+ *      author: string,
+ *      license: string,
+ *      homepage: string,
+ *      requirements: array{
+ *          glpi: array{
+ *              min: string,
+ *              max: string,
+ *          }
+ *      }
+ * }
  */
-function plugin_version_{LNAME}()
+function plugin_version_{LNAME}(): array
 {
     return [
         'name'           => '{NAME}',
@@ -68,37 +81,34 @@ function plugin_version_{LNAME}()
             'glpi' => [
                 'min' => PLUGIN_{UNAME}_MIN_GLPI_VERSION,
                 'max' => PLUGIN_{UNAME}_MAX_GLPI_VERSION,
-            ]
-        ]
+            ],
+        ],
     ];
 }
 
 /**
  * Check pre-requisites before install
- * OPTIONNAL, but recommanded
- *
- * @return boolean
+ * OPTIONAL
  */
-function plugin_{LNAME}_check_prerequisites()
+function plugin_{LNAME}_check_prerequisites(): bool
 {
     return true;
 }
 
 /**
  * Check configuration process
+ * OPTIONAL
  *
- * @param boolean $verbose Whether to display message on failure. Defaults to false
- *
- * @return boolean
+ * @param bool $verbose Whether to display message on failure. Defaults to false.
  */
-function plugin_{LNAME}_check_config($verbose = false)
+function plugin_{LNAME}_check_config(bool $verbose = false): bool
 {
-    if (true) { // Your configuration check
-        return true;
-    }
+    // Your configuration check
+    return true;
 
-    if ($verbose) {
-        echo __('Installed / not configured', '{LNAME}');
-    }
-    return false;
+    // Example:
+    // if ($verbose) {
+    //    echo __('Installed / not configured', '{LNAME}');
+    // }
+    // return false;
 }

@@ -31,18 +31,22 @@
  * -------------------------------------------------------------------------
  */
 
-/**
- * Plugin install process
- */
-function plugin_{LNAME}_install(): bool
-{
-    return true;
-}
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
 
-/**
- * Plugin uninstall process
- */
-function plugin_{LNAME}_uninstall(): bool
-{
-    return true;
-}
+$finder = Finder::create()
+    ->in(__DIR__)
+    ->ignoreVCSIgnored(true)
+    ->name('*.php');
+
+$config = new Config();
+
+$rules = [
+    '@PER-CS' => true, // Latest PER rules.
+];
+
+return $config
+    ->setRules($rules)
+    ->setFinder($finder)
+    ->setCacheFile(__DIR__ . '/var/php-cs-fixer/.php-cs-fixer.cache')
+;

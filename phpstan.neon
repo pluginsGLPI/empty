@@ -1,0 +1,16 @@
+includes:
+    - ../../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - hook.php
+        - setup.php
+    scanDirectories:
+        - ../../src
+    bootstrapFiles:
+        - ../../inc/based_config.php
+    stubFiles:
+        - ../../stubs/glpi_constants.php
+    treatPhpDocTypesAsCertain: false
