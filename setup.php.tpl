@@ -41,10 +41,8 @@ define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "11.0.99");
 /**
  * Init hooks of the plugin.
  * REQUIRED
- *
- * @return void
  */
-function plugin_init_{LNAME}()
+function plugin_init_{LNAME}(): void
 {
     global $PLUGIN_HOOKS;
 }
@@ -53,10 +51,8 @@ function plugin_init_{LNAME}()
 /**
  * Get the name and the version of the plugin
  * REQUIRED
- *
- * @return array
  */
-function plugin_version_{LNAME}()
+function plugin_version_{LNAME}(): array
 {
     return [
         'name'           => '{NAME}',
@@ -76,10 +72,8 @@ function plugin_version_{LNAME}()
 /**
  * Check pre-requisites before install
  * OPTIONNAL, but recommended
- *
- * @return boolean
  */
-function plugin_{LNAME}_check_prerequisites()
+function plugin_{LNAME}_check_prerequisites(): bool
 {
     return true;
 }
@@ -87,11 +81,9 @@ function plugin_{LNAME}_check_prerequisites()
 /**
  * Check configuration process
  *
- * @param boolean $verbose Whether to display message on failure. Defaults to false
- *
- * @return boolean
+ * @param boolean $verbose Whether to display message on failure. Defaults to false.
  */
-function plugin_{LNAME}_check_config($verbose = false)
+function plugin_{LNAME}_check_config($verbose = false): bool
 {
     if (true) { // Your configuration check
         return true;

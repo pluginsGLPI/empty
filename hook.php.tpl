@@ -33,20 +33,16 @@
 
 /**
  * Plugin install process
- *
- * @return boolean
  */
-function plugin_{LNAME}_install()
+function plugin_{LNAME}_install(): bool
 {
     return true;
 }
 
 /**
  * Plugin uninstall process
- *
- * @return boolean
  */
-function plugin_{LNAME}_uninstall()
+function plugin_{LNAME}_uninstall(): bool
 {
     return true;
 }
