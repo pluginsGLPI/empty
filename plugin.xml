@@ -3,7 +3,7 @@
    <key>{LNAME}</key>
    <!-- stable, beta, development, alpha, ... -->
    <state>stable</state>
-   <logo>https://raw.githubusercontent.com/pluginsGLPI/{LNAME}/master/{LNAME}.png</logo>
+   <logo>https://raw.githubusercontent.com/pluginsGLPI/{LNAME}/main/{LNAME}.png</logo>
    <description>
       <short>
          <!-- Add as many lang tag you want -->
@@ -19,7 +19,7 @@
    <homepage>https://github.com/pluginsGLPI/{LNAME}</homepage>
    <download>https://github.com/pluginsGLPI/{LNAME}/releases</download>
    <issues>https://github.com/pluginsGLPI/{LNAME}/issues</issues>
-   <readme>https://github.com/pluginsGLPI/{LNAME}/blob/master/README.md</readme>
+   <readme>https://github.com/pluginsGLPI/{LNAME}/blob/main/README.md</readme>
    <authors>
       <!-- Add as many author tag you want -->
       <author>Teclib'</author>
@@ -49,7 +49,7 @@
       </fr>
    </tags-->
    <!--screenshots>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot.png</screenshot>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/master/screenshot2.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/fields/raw/main/screenshot.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/fields/raw/main/screenshot2.png</screenshot>
    </screenshots-->
 </root>
