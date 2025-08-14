@@ -8,12 +8,12 @@
       <short>
          <!-- Add as many lang tag you want -->
          <en>{NAME} GLPI plugin.</en>
-         <fr>Plugin GLPI {NAME}</fr>
+         <fr>Plugin GLPI {NAME}.</fr>
       </short>
       <long>
          <!-- Add as many lang tag you want -->
          <en>A long description for {NAME} GLPI plugin.</en>
-         <fr>Un description longue pour le plugin GLPI {NAME}</fr>
+         <fr>Une description longue pour le plugin GLPI {NAME}.</fr>
       </long>
    </description>
    <homepage>https://github.com/pluginsGLPI/{LNAME}</homepage>
