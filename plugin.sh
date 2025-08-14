@@ -28,6 +28,8 @@
 # --------------------------------------------------------------------------
 #
 
+set -e -u -o pipefail
+
 if [[ $# -ne 2 && $# -ne 3 ]]; then
     echo $0: usage: plugin.sh name version [destination/path]
     exit 1
@@ -61,6 +63,8 @@ mkdir "$DEST"
 
 rsync \
     --exclude '.git' \
+    --exclude '.github/workflows/continuous-integration.yml' \
+    --exclude '.github/workflows/create-plugin.sh' \
     --exclude 'plugin.sh' \
     --exclude 'dist' \
     --exclude 'README.md' \
@@ -68,22 +72,24 @@ rsync \
 
 pushd "$DEST" > /dev/null
 
-#rename .tpl...
-for f in `ls *.tpl`
-do
-    mv $f ${f%.*}
-done
+# Remove .tpl suffix (current folder and subdirectories)
+# Note: the .tpl suffix is used to prevent some files from being detected by
+# GLPI (like the setup.php) or github (the ci configuration).
+find . -type f -name "*.tpl" -exec bash -c 'mv "$0" "${0%.*}"' {} \;
 
 # move xml file
 mv plugin.xml $LNAME.xml
 
 #do replacements
 sed \
-    -e "s/{NAME}/$NAME/" \
-    -e "s/{LNAME}/$LNAME/" \
-    -e "s/{UNAME}/$UNAME/" \
-    -e "s/{VERSION}/$VERSION/" \
-    -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md
+    -e "s/{NAME}/$NAME/g" \
+    -e "s/{LNAME}/$LNAME/g" \
+    -e "s/{UNAME}/$UNAME/g" \
+    -e "s/{VERSION}/$VERSION/g" \
+    -e "s/{YEAR}/$YEAR/g" \
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php composer.json
+
+# Unignore composer lock
+sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
 
 popd > /dev/null

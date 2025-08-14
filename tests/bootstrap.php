@@ -31,18 +31,17 @@
  * -------------------------------------------------------------------------
  */
 
-/**
- * Plugin install process
- */
-function plugin_{LNAME}_install(): bool
-{
-    return true;
-}
+global $CFG_GLPI, $PLUGIN_HOOKS;
 
-/**
- * Plugin uninstall process
- */
-function plugin_{LNAME}_uninstall(): bool
-{
-    return true;
+define('GLPI_ROOT', __DIR__ . '/../../../');
+define('GLPI_LOG_DIR', __DIR__ . '/files/_logs');
+
+define('TU_USER', 'glpi');
+define('TU_PASS', 'glpi');
+define('GLPI_LOG_LVL', 'DEBUG');
+
+require GLPI_ROOT . '/inc/includes.php';
+
+if (!Plugin::isPluginActive("{LNAME}")) {
+    throw new RuntimeException("Plugin {LNAME} is not active in the test database");
 }
