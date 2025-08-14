@@ -68,8 +68,8 @@ function plugin_version_{LNAME}()
             'glpi' => [
                 'min' => PLUGIN_{UNAME}_MIN_GLPI_VERSION,
                 'max' => PLUGIN_{UNAME}_MAX_GLPI_VERSION,
-            ]
-        ]
+            ],
+        ],
     ];
 }
 
