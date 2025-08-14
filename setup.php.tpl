@@ -75,7 +75,7 @@ function plugin_version_{LNAME}()
 
 /**
  * Check pre-requisites before install
- * OPTIONNAL, but recommanded
+ * OPTIONNAL, but recommended
  *
  * @return boolean
  */
