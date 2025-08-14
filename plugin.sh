@@ -80,7 +80,7 @@ mv plugin.xml $LNAME.xml
 #do replacements
 sed \
     -e "s/{NAME}/$NAME/" \
-    -e "s/{LNAME}/$LNAME/" \
+    -e "s/{LNAME}/$LNAME/g" \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
