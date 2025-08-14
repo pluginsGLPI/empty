@@ -7,8 +7,8 @@
    <description>
       <short>
          <!-- Add as many lang tag you want -->
-         <en>{NAME} GLPI plugin.</en>
-         <fr>Plugin GLPI {NAME}.</fr>
+         <en>{NAME} GLPI plugin</en>
+         <fr>Plugin GLPI {NAME}</fr>
       </short>
       <long>
          <!-- Add as many lang tag you want -->
