@@ -31,10 +31,14 @@
  * -------------------------------------------------------------------------
  */
 
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 
 // Minimal GLPI version, inclusive
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "11.0.0");
+
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 // Maximum GLPI version, exclusive
 define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "11.0.99");
 
@@ -46,7 +50,6 @@ function plugin_init_{LNAME}(): void
 {
     global $PLUGIN_HOOKS;
 }
-
 
 /**
  * Get the name and the version of the plugin

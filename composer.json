@@ -3,10 +3,7 @@
         "php": ">=8.2"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.86",
-        "glpi-project/tools": "^0.7.7",
-        "phpstan/phpstan": "^2.1",
-        "rector/rector": "^2.1"
+        "glpi-project/tools": "^0.7.7"
     },
     "config": {
         "optimize-autoloader": true,
