@@ -51,6 +51,20 @@ function plugin_init_{LNAME}(): void
 /**
  * Get the name and the version of the plugin
  * REQUIRED
+ *
+ * @return array{
+ *      name: string,
+ *      version: string,
+ *      author: string,
+ *      license: string,
+ *      homepage: string,
+ *      requirements: array{
+ *          glpi: array{
+ *              min: string,
+ *              max: string,
+ *          }
+ *      }
+ * }
  */
 function plugin_version_{LNAME}(): array
 {
@@ -81,16 +95,16 @@ function plugin_{LNAME}_check_prerequisites(): bool
 /**
  * Check configuration process
  *
- * @param boolean $verbose Whether to display message on failure. Defaults to false.
+ * @param bool $verbose Whether to display message on failure. Defaults to false.
  */
-function plugin_{LNAME}_check_config($verbose = false): bool
+function plugin_{LNAME}_check_config(bool $verbose = false): bool
 {
-    if (true) { // Your configuration check
-        return true;
-    }
+    // Your configuration check
+    return true;
 
-    if ($verbose) {
-        echo __('Installed / not configured', '{LNAME}');
-    }
-    return false;
+    // Example:
+    // if ($verbose) {
+    //    echo __('Installed / not configured', '{LNAME}');
+    // }
+    // return false;
 }
