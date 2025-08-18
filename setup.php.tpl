@@ -38,8 +38,8 @@ define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "11.0.0");
 
-/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 // Maximum GLPI version, exclusive
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "11.0.99");
 
 /**
