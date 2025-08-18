@@ -68,11 +68,8 @@ rsync \
 
 pushd "$DEST" > /dev/null
 
-#rename .tpl...
-for f in `ls *.tpl`
-do
-    mv $f ${f%.*}
-done
+# Remove .tpl suffix (current folder and subdirectories)
+find . -type f -name "*.tpl" -exec bash -c 'mv "$0" "${0%.*}"' {} \;
 
 # move xml file
 mv plugin.xml $LNAME.xml
@@ -84,6 +81,6 @@ sed \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml
 
 popd > /dev/null
