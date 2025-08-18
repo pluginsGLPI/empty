@@ -1,0 +1,15 @@
+<phpunit
+    bootstrap="tests/bootstrap.php"
+    processIsolation="false"
+    colors="true"
+    cacheDirectory="var/phpunit"
+>
+    <testsuites>
+        <testsuite name="Tests">
+        <directory suffix="Test.php">tests</directory>
+    </testsuite>
+    </testsuites>
+    <php>
+        <ini name="memory_limit" value="2G"/>
+    </php>
+</phpunit>

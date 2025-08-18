@@ -69,6 +69,8 @@ rsync \
 pushd "$DEST" > /dev/null
 
 # Remove .tpl suffix (current folder and subdirectories)
+# Note: the .tpl suffix is used to prevent some files from being detected by
+# GLPI (like the setup.php) or github (the ci configuration).
 find . -type f -name "*.tpl" -exec bash -c 'mv "$0" "${0%.*}"' {} \;
 
 # move xml file
@@ -81,6 +83,6 @@ sed \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php
 
 popd > /dev/null
