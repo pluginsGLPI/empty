@@ -1,0 +1,12 @@
+parameters:
+    level: max
+    paths:
+        - src
+        - hook.php
+        - setup.php
+    scanDirectories:
+        - ../../src
+    bootstrapFiles:
+        - ../../stubs/glpi_constants.php
+        - ../../vendor/autoload.php
+    treatPhpDocTypesAsCertain: false
