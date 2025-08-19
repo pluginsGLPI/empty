@@ -33,6 +33,7 @@
 
 use Rector\Caching\ValueObject\Storage\FileCacheStorage;
 use Rector\Config\RectorConfig;
+use Rector\Naming\Rector\ClassMethod\RenameParamToMatchTypeRector;
 use Rector\TypeDeclaration\Rector\StmtsAwareInterface\DeclareStrictTypesRector;
 
 $configuration = RectorConfig::configure();
@@ -47,6 +48,10 @@ $configuration->withSkip([
 
     // Can't be used yet, will lead to conflicts with GLPI's core.
     DeclareStrictTypesRector::class,
+
+    // Can't be used as we don't have control on the parameters inherit from
+    // GLPI's core classes.
+    RenameParamToMatchTypeRector::class,
 ]);
 $configuration->withCache(
     cacheClass: FileCacheStorage::class,

@@ -83,6 +83,6 @@ sed \
     -e "s/{UNAME}/$UNAME/" \
     -e "s/{VERSION}/$VERSION/" \
     -e "s/{YEAR}/$YEAR/" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php rector.php
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php rector.php composer.json
 
 popd > /dev/null
