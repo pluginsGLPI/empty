@@ -36,11 +36,6 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
-    ->exclude([
-        'node_modules/',
-        'vendor/',
-        'var',
-    ])
     ->ignoreVCSIgnored(true)
     ->name('*.php');
 
