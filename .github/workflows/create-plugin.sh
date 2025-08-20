@@ -29,4 +29,4 @@
 #
 
 # move self to `template` then create an `empty` plugin`
-(cd .. && mv empty template && cd template && plugin.sh empty "1.0.0")
+(cd .. && mv empty template && cd template && ./plugin.sh empty "1.0.0")
