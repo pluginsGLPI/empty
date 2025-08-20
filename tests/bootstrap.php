@@ -34,6 +34,6 @@
 chdir(__DIR__ . '/../../..');
 require __DIR__ . '/../../../phpunit/bootstrap.php';
 
-if (!Plugin::isPluginActive($current_plugin_folder)) {
+if (!Plugin::isPluginActive("{LNAME}")) {
     throw new RuntimeException("Plugin {LNAME} is not active in the test database");
 }
