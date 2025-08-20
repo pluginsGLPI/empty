@@ -31,7 +31,6 @@
  * -------------------------------------------------------------------------
  */
 
-chdir(__DIR__ . '/../../..');
 require __DIR__ . '/../../../phpunit/bootstrap.php';
 
 if (!Plugin::isPluginActive("{LNAME}")) {
