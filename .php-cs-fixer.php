@@ -42,7 +42,7 @@ $finder = Finder::create()
 $config = new Config();
 
 $rules = [
-    '@PER-CS2.0' => true,
+    '@PER-CS' => true, // Latest PER rules.
 ];
 
 return $config
