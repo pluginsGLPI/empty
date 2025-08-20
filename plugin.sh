@@ -78,11 +78,11 @@ mv plugin.xml $LNAME.xml
 
 #do replacements
 sed \
-    -e "s/{NAME}/$NAME/" \
+    -e "s/{NAME}/$NAME/g" \
     -e "s/{LNAME}/$LNAME/g" \
-    -e "s/{UNAME}/$UNAME/" \
-    -e "s/{VERSION}/$VERSION/" \
-    -e "s/{YEAR}/$YEAR/" \
+    -e "s/{UNAME}/$UNAME/g" \
+    -e "s/{VERSION}/$VERSION/g" \
+    -e "s/{YEAR}/$YEAR/g" \
     -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php rector.php composer.json
 
 # Remove composer lock
