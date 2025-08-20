@@ -49,7 +49,7 @@
       </fr>
    </tags-->
    <!--screenshots>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/main/screenshot.png</screenshot>
-      <screenshot>https://github.com/pluginsGLPI/fields/raw/main/screenshot2.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/{LNAME}/raw/main/screenshot.png</screenshot>
+      <screenshot>https://github.com/pluginsGLPI/{LNAME}/raw/main/screenshot2.png</screenshot>
    </screenshots-->
 </root>
