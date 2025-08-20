@@ -4,3 +4,4 @@ vendor/
 .gh_token
 *.min.*
 var
+composer.lock
