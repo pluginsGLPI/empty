@@ -85,7 +85,13 @@ sed \
     -e "s/{YEAR}/$YEAR/g" \
     -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php rector.php composer.json
 
-# Remove composer lock
+# Unignore composer lock
 sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
+
+# Remove dev scripts
+rm .github/workflows/create-plugin.sh
+
+# Remove self
+rm plugin.sh
 
 popd > /dev/null
