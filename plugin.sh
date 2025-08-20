@@ -92,7 +92,4 @@ sed \
 # Unignore composer lock
 sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
 
-# Remove dev scripts
-rm .github/workflows/create-plugin.sh
-
 popd > /dev/null
