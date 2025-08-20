@@ -31,16 +31,7 @@
  * -------------------------------------------------------------------------
  */
 
-global $CFG_GLPI, $PLUGIN_HOOKS;
-
-define('GLPI_ROOT', __DIR__ . '/../../../');
-define('GLPI_LOG_DIR', __DIR__ . '/files/_logs');
-
-define('TU_USER', 'glpi');
-define('TU_PASS', 'glpi');
-define('GLPI_LOG_LVL', 'DEBUG');
-
-require GLPI_ROOT . '/inc/includes.php';
+require __DIR__ . '/../../../phpunit/bootstrap.php';
 
 if (!Plugin::isPluginActive("{LNAME}")) {
     throw new RuntimeException("Plugin {LNAME} is not active in the test database");

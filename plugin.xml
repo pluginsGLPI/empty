@@ -29,9 +29,7 @@
       <version>
          <num>{VERSION}</num>
          <!-- Add as many compatibility tag you want -->
-         <compatibility>9.4</compatibility>
-         <compatibility>9.3</compatibility>
-         <compatibility>9.2</compatibility>
+         <compatibility>~11.0.0</compatibility>
       </version>
    </versions>
    <langs>

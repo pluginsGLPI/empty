@@ -1,5 +1,7 @@
 includes:
+    - ../../vendor/glpi-project/phpstan-glpi/extension.neon
     - ../../vendor/phpstan/phpstan-deprecation-rules/rules.neon
+    - ../../vendor/thecodingmachine/phpstan-safe-rule/phpstan-safe-rule.neon
 
 parameters:
     level: max
@@ -10,7 +12,6 @@ parameters:
     scanDirectories:
         - ../../src
     bootstrapFiles:
-        - ../../inc/based_config.php
-    stubFiles:
         - ../../stubs/glpi_constants.php
+        - ../../vendor/autoload.php
     treatPhpDocTypesAsCertain: false

@@ -31,25 +31,22 @@
  * -------------------------------------------------------------------------
  */
 
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
 define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 
 // Minimal GLPI version, inclusive
-define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "10.0.0");
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
+define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "11.0.0");
 
 // Maximum GLPI version, exclusive
-define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "10.0.99");
+/** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
+define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "11.0.99");
 
 /**
  * Init hooks of the plugin.
  * REQUIRED
  */
-function plugin_init_{LNAME}(): void
-{
-    /** @var array<string, array<string, mixed>> $PLUGIN_HOOKS */
-    global $PLUGIN_HOOKS;
-
-    $PLUGIN_HOOKS['csrf_compliant']['{LNAME}'] = true;
-}
+function plugin_init_{LNAME}(): void {}
 
 /**
  * Get the name and the version of the plugin
