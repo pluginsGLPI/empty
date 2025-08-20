@@ -88,7 +88,7 @@ function plugin_version_{LNAME}(): array
 
 /**
  * Check pre-requisites before install
- * OPTIONNAL, but recommended
+ * OPTIONAL
  */
 function plugin_{LNAME}_check_prerequisites(): bool
 {
@@ -97,6 +97,7 @@ function plugin_{LNAME}_check_prerequisites(): bool
 
 /**
  * Check configuration process
+ * OPTIONAL
  *
  * @param bool $verbose Whether to display message on failure. Defaults to false.
  */
