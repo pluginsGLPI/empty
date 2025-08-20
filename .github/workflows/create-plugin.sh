@@ -31,8 +31,8 @@
 set -e -u -o pipefail
 
 # `rsync` is required by the `plugin.sh` script
-apt update
-apt install --assume-yes --no-install-recommends --quiet rsync
+sudo apt update
+sudo apt install --assume-yes --no-install-recommends --quiet rsync
 
 # move self to `template` then create an `empty` plugin`
 (cd .. && mv empty template && cd template && ./plugin.sh empty "1.0.0")
