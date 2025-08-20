@@ -36,9 +36,6 @@ use PhpCsFixer\Finder;
 
 $finder = Finder::create()
     ->in(__DIR__)
-    ->exclude([
-        '.git/',
-    ])
     ->ignoreVCSIgnored(true)
     ->name('*.php');
 
