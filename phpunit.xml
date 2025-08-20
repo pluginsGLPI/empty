@@ -6,8 +6,8 @@
 >
     <testsuites>
         <testsuite name="Tests">
-        <directory suffix="Test.php">tests</directory>
-    </testsuite>
+            <directory suffix="Test.php">tests</directory>
+        </testsuite>
     </testsuites>
     <php>
         <ini name="memory_limit" value="2G"/>
