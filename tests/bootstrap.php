@@ -32,9 +32,9 @@
  */
 
 $current_plugin_folder = basename(realpath(__DIR__ . '/../'));
-chdir(__DIR__ . '/../../..');
 
-require 'phpunit/bootstrap.php';
+chdir(__DIR__ . '/../../..');
+require __DIR__ . '/../../../phpunit/bootstrap.php';
 
 if (!Plugin::isPluginActive($current_plugin_folder)) {
     echo("Plugin $current_plugin_folder is not active in the test database" . PHP_EOL);
