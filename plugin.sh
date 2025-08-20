@@ -28,6 +28,8 @@
 # --------------------------------------------------------------------------
 #
 
+set -e -u -o pipefail
+
 if [[ $# -ne 2 && $# -ne 3 ]]; then
     echo $0: usage: plugin.sh name version [destination/path]
     exit 1
@@ -61,6 +63,8 @@ mkdir "$DEST"
 
 rsync \
     --exclude '.git' \
+    --exclude '.github/workflows/continuous-integration.yml' \
+    --exclude '.github/workflows/create-plugin.sh' \
     --exclude 'plugin.sh' \
     --exclude 'dist' \
     --exclude 'README.md' \
@@ -83,15 +87,12 @@ sed \
     -e "s/{UNAME}/$UNAME/g" \
     -e "s/{VERSION}/$VERSION/g" \
     -e "s/{YEAR}/$YEAR/g" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php rector.php composer.json
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php composer.json
 
 # Unignore composer lock
 sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
 
 # Remove dev scripts
 rm .github/workflows/create-plugin.sh
-
-# Remove self
-rm plugin.sh
 
 popd > /dev/null
