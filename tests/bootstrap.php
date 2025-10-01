@@ -31,7 +31,7 @@
  * -------------------------------------------------------------------------
  */
 
-require __DIR__ . '/../../../phpunit/bootstrap.php';
+require __DIR__ . '/../../../tests/bootstrap.php';
 
 if (!Plugin::isPluginActive("{LNAME}")) {
     throw new RuntimeException("Plugin {LNAME} is not active in the test database");
