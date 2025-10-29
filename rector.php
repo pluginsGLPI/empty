@@ -43,7 +43,7 @@ return RectorConfig::configure()
     ])
     ->withPhpVersion(PhpVersion::PHP_82)
     ->withCache(
-        cacheDirectory: 'var/empty-rector',
+        cacheDirectory: __DIR__ . '/var/rector',
         cacheClass: FileCacheStorage::class,
     )
     ->withRootFiles()
