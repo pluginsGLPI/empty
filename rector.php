@@ -52,5 +52,5 @@ return RectorConfig::configure()
     ->withDeadCodeLevel(100)
     ->withCodeQualityLevel(100)
     ->withCodingStyleLevel(100)
-    ->withPhpSets(php74: true) // apply PHP sets up to PHP 7.4
+    ->withPhpSets(php82: true) // apply PHP sets up to PHP 8.2
 ;
