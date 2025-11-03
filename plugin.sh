@@ -87,7 +87,7 @@ sed \
     -e "s/{UNAME}/$UNAME/g" \
     -e "s/{VERSION}/$VERSION/g" \
     -e "s/{YEAR}/$YEAR/g" \
-    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php composer.json
+    -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php composer.json rector.php
 
 # Unignore composer lock
 sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
