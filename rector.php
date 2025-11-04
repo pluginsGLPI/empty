@@ -50,8 +50,10 @@ return RectorConfig::configure()
     ->withRootFiles()
     ->withParallel(timeoutSeconds: 300)
     ->withImportNames(removeUnusedImports: true)
-    ->withDeadCodeLevel(100)
-    ->withCodeQualityLevel(100)
-    ->withCodingStyleLevel(100)
+    ->withPreparedSets(
+        deadCode: true,
+        codeQuality: true,
+        codingStyle: true,
+    )
     ->withPhpSets(php82: true) // apply PHP sets up to PHP 8.2
 ;
