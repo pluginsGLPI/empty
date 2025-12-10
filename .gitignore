@@ -5,3 +5,5 @@ vendor/
 composer.lock
 *.min.*
 var
+/.vscode/
+/.idea/
