@@ -4,6 +4,12 @@
     testdox="true"
     cacheDirectory="var/phpunit"
 >
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+    </source>
+
     <testsuites>
         <testsuite name="Tests">
             <directory suffix="Test.php">tests</directory>
