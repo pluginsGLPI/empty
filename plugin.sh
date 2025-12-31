@@ -95,3 +95,5 @@ sed \
 sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
 
 popd > /dev/null
+
+echo -e "\033[0;32mPlugin $NAME created under $DEST\033[0m"
