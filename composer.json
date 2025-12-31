@@ -2,14 +2,16 @@
     "require": {
         "php": ">=8.2"
     },
-    "require-dev": {
-        "glpi-project/tools": "^0.8"
-    },
     "config": {
         "optimize-autoloader": true,
         "platform": {
             "php": "8.2.99"
         },
         "sort-packages": true
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "GlpiPlugin\\{NS_NAME}\\Tests\\": "tests/"
+        }
     }
 }
