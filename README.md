@@ -31,6 +31,11 @@ You can also provide a destination path (ie. if your `empty` directory is not in
 * `{UNAME}` will be replaced by the uppercased name,
 * `{YEAR}` will be replaced by the current year.
 
+## Enabling Code coverage
+By default, code coverage is disabled.
+
+If you want to enable it, you have to set your project environment variable `CODE_COVERAGE` to `true`.
+
 ## Updating Your Plugin
 
 To import the changes made to the _pluginsGLPI empty_ template into your project,
