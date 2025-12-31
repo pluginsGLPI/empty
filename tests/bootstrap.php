@@ -31,8 +31,12 @@
  * -------------------------------------------------------------------------
  */
 
-require __DIR__ . '/../../../tests/bootstrap.php';
+$current_plugin_folder = basename(realpath(__DIR__ . '/../'));
 
-if (!Plugin::isPluginActive("{LNAME}")) {
-    throw new RuntimeException("Plugin {LNAME} is not active in the test database");
+require __DIR__ . '/../../../tests/bootstrap.php';
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+if (!Plugin::isPluginActive($current_plugin_folder)) {
+	echo("Plugin $current_plugin_folder is not active in the test database" . PHP_EOL);
+	die();
 }

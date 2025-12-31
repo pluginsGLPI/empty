@@ -48,6 +48,7 @@ fi
 NAME=$(echo $1|tr -dc '[[:alpha:]]')
 LNAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
 UNAME=$(echo "$NAME" | tr '[:lower:]' '[:upper:]')
+NS_NAME=$(echo "$1" | sed -E 's/\b([a-z])/\U\1/g' | tr -dc '[[:alpha:]]')
 VERSION=$2
 YEAR=$(date +%Y)
 
@@ -85,6 +86,7 @@ sed \
     -e "s/{NAME}/$NAME/g" \
     -e "s/{LNAME}/$LNAME/g" \
     -e "s/{UNAME}/$UNAME/g" \
+    -e "s/{NS_NAME}/$NS_NAME/g" \
     -e "s/{VERSION}/$VERSION/g" \
     -e "s/{YEAR}/$YEAR/g" \
     -i setup.php hook.php $LNAME.xml tools/HEADER README.md Makefile .github/workflows/continuous-integration.yml tests/bootstrap.php composer.json rector.php
