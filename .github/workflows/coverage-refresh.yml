@@ -1,0 +1,16 @@
+name: "Coverage refresh"
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  coverage-refresh:
+    uses: "glpi-project/plugin-ci-workflows/.github/workflows/coverage-refresh.yml@v1"
+    with:
+      plugin-key: "empty"

@@ -34,3 +34,10 @@ jobs:
       php-version: "${{ matrix.php-version }}"
       db-image: "${{ matrix.db-image }}"
       init-script: "./.github/workflows/create-plugin.sh"
+
+  coverage-report:
+    needs: "ci"
+    uses: "glpi-project/plugin-ci-workflows/.github/workflows/coverage-report.yml@v1"
+    with:
+      plugin-key: "empty"
+
