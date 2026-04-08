@@ -60,16 +60,23 @@ if [ -d "$DEST" ]; then
     exit 1
 fi
 
+read -r -p "Does your plugin include JS/TS files? [y/N] " has_js
+read -r -p "Does your plugin include CSS/SCSS/SASS/LESS files? [y/N] " has_css
+
 mkdir "$DEST"
 
-rsync \
-    --exclude '.git' \
-    --exclude '.github/workflows/continuous-integration.yml' \
-    --exclude '.github/workflows/create-plugin.sh' \
-    --exclude 'plugin.sh' \
-    --exclude 'dist' \
-    --exclude 'README.md' \
-    -a . "$DEST"
+rsync_excludes=(
+    --exclude '.git'
+    --exclude '.github/workflows/continuous-integration.yml'
+    --exclude '.github/workflows/create-plugin.sh'
+    --exclude 'plugin.sh'
+    --exclude 'dist'
+    --exclude 'README.md'
+)
+[[ ! "$has_js" =~ ^[Yy]$ ]] && rsync_excludes+=(--exclude 'eslint.config.mjs.tpl')
+[[ ! "$has_css" =~ ^[Yy]$ ]] && rsync_excludes+=(--exclude '.stylelintrc.js.tpl')
+
+rsync "${rsync_excludes[@]}" -a . "$DEST"
 
 pushd "$DEST" > /dev/null
 
@@ -97,3 +104,4 @@ sed -i '/^[[:space:]]*composer\.lock[[:space:]]*$/d' .gitignore
 popd > /dev/null
 
 echo -e "\033[0;32mPlugin $NAME created under $DEST\033[0m"
+echo -e "\033[0;33mDon't forget to add a RELEASE_TOKEN secret in your GitHub repository settings (Settings → Secrets and variables → Actions) with a personal access token having 'contents: write' permission.\033[0m"
