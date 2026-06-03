@@ -34,7 +34,9 @@ You can also provide a destination path (ie. if your `empty` directory is not in
 ## Enabling Code coverage
 By default, code coverage is disabled.
 
-If you want to enable it, you have to set your project environment variable `CODE_COVERAGE` to `true`.
+You can enable it by updating the `.glpi-coverage.json`.
+
+Configuration defaults and explanations are available [here](https://github.com/glpi-project/plugin-ci-workflows#code-coverage).
 
 ## Updating Your Plugin
 
