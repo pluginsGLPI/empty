@@ -31,6 +31,13 @@ You can also provide a destination path (ie. if your `empty` directory is not in
 * `{UNAME}` will be replaced by the uppercased name,
 * `{YEAR}` will be replaced by the current year.
 
+## Enabling Code coverage
+By default, code coverage is disabled.
+
+You can enable it by updating the `.glpi-coverage.json`.
+
+Configuration defaults and explanations are available [here](https://github.com/glpi-project/plugin-ci-workflows#code-coverage).
+
 ## Updating Your Plugin
 
 To import the changes made to the _pluginsGLPI empty_ template into your project,

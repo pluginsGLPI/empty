@@ -1,5 +1,8 @@
 name: "Continuous integration"
 
+# Code coverage is automatically enabled when a `.glpi-coverage.json` file
+# is present at the root of the plugin directory.
+
 on:
   push:
     branches:
@@ -33,3 +36,9 @@ jobs:
       glpi-version: "${{ matrix.glpi-version }}"
       php-version: "${{ matrix.php-version }}"
       db-image: "${{ matrix.db-image }}"
+
+  coverage-report:
+    needs: "ci"
+    uses: "glpi-project/plugin-ci-workflows/.github/workflows/coverage-report.yml@v1"
+    with:
+      plugin-key: "{LNAME}"
