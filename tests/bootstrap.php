@@ -31,7 +31,7 @@
  * -------------------------------------------------------------------------
  */
 
-$current_plugin_folder = basename(realpath(__DIR__ . '/../'));
+$current_plugin_folder = basename(dirname(__DIR__));
 
 require __DIR__ . '/../../../tests/bootstrap.php';
 require dirname(__DIR__) . '/vendor/autoload.php';
