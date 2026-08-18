@@ -36,11 +36,11 @@ define('PLUGIN_{UNAME}_VERSION', '{VERSION}');
 
 // Minimal GLPI version, inclusive
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "11.0.0");
+define("PLUGIN_{UNAME}_MIN_GLPI_VERSION", "12.0.0");
 
 // Maximum GLPI version, exclusive
 /** @phpstan-ignore theCodingMachineSafe.function (safe to assume this isn't already defined) */
-define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "11.0.99");
+define("PLUGIN_{UNAME}_MAX_GLPI_VERSION", "12.0.99");
 
 /**
  * Init hooks of the plugin.
