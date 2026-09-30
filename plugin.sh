@@ -48,6 +48,7 @@ fi
 NAME=$(echo $1|tr -dc '[[:alpha:]]')
 LNAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]')
 UNAME=$(echo "$NAME" | tr '[:lower:]' '[:upper:]')
+CNAME="${LNAME^}"
 NS_NAME=$(echo "$1" | sed -E 's/\b([a-z])/\U\1/g' | tr -dc '[[:alpha:]]')
 VERSION=$2
 YEAR=$(date +%Y)
@@ -93,6 +94,7 @@ sed \
     -e "s/{NAME}/$NAME/g" \
     -e "s/{LNAME}/$LNAME/g" \
     -e "s/{UNAME}/$UNAME/g" \
+    -e "s/{CNAME}/$CNAME/g" \
     -e "s/{NS_NAME}/$NS_NAME/g" \
     -e "s/{VERSION}/$VERSION/g" \
     -e "s/{YEAR}/$YEAR/g" \

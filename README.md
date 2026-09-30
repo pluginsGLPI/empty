@@ -29,6 +29,7 @@ You can also provide a destination path (ie. if your `empty` directory is not in
 * `{VERSION}` will be replaced byt the version you've provided,
 * `{LNAME}` will be replaced byt the lowercased name,
 * `{UNAME}` will be replaced by the uppercased name,
+* `{CNAME}` will be replaced by the capitalized lowercased name (e.g. `Mygreatplugin`),
 * `{YEAR}` will be replaced by the current year.
 
 ## Enabling Code coverage
