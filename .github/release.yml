@@ -1,0 +1,51 @@
+changelog:
+  exclude:
+    labels:
+      - "ignore-for-release"
+  categories:
+    - title: "⚠️ Breaking Changes"
+      labels:
+        - "breaking-change"
+    - title: "🔒 Security"
+      labels:
+        - "security"
+    - title: "🚀 Features"
+      labels:
+        - "enhancement"
+        - "feature"
+    - title: "🐛 Bug Fixes"
+      labels:
+        - "fix"
+        - "bug"
+    - title: "📝 Documentation"
+      labels:
+        - "documentation"
+    - title: "🎨 Style"
+      labels:
+        - "style"
+    - title: "♻️ Refactoring"
+      labels:
+        - "refactor"
+    - title: "⚡️ Performance"
+      labels:
+        - "performance"
+    - title: "✅ Tests"
+      labels:
+        - "test"
+    - title: "👷 CI"
+      labels:
+        - "ci"
+    - title: "🔧 Maintenance"
+      labels:
+        - "build"
+        - "chore"
+    - title: "🐙 GitHub Actions"
+      labels:
+        - "github_actions"
+    - title: "📦 Dependencies"
+      labels:
+        - "dependencies"
+        - "php"
+    - title: "Other Changes"
+      labels:
+        - "*"
