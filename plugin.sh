@@ -61,15 +61,20 @@ if [ -d "$DEST" ]; then
     exit 1
 fi
 
-read -r -p "Does your plugin include JS/TS files? [y/N] " has_js
-read -r -p "Does your plugin include CSS/SCSS/SASS/LESS files? [y/N] " has_css
+# No stdin (CI init script): `read` fails on EOF, answer the default "N"
+read -r -p "Does your plugin include JS/TS files? [y/N] " has_js || true
+read -r -p "Does your plugin include CSS/SCSS/SASS/LESS files? [y/N] " has_css || true
 
 mkdir "$DEST"
 
 rsync_excludes=(
     --exclude '.git'
+    --exclude '.github/label-commenter-config.yml'
+    --exclude '.github/workflows/close_stale_issue.yml'
     --exclude '.github/workflows/continuous-integration.yml'
     --exclude '.github/workflows/create-plugin.sh'
+    --exclude '.github/workflows/label-commenter.yml'
+    --exclude '.github/workflows/need-feedback.yml'
     --exclude 'plugin.sh'
     --exclude 'dist'
     --exclude 'README.md'
